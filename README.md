@@ -1,30 +1,64 @@
-echo : - name: Upload a Build Artifact
-  uses: actions/upload-artifact@v4.4.3
-  with:
-    # Artifact name
-    name: # optional, default is artifact
-    # A file, directory or wildcard pattern that describes what to upload
-    path: 
-    # The desired behavior if no files are found using the provided path.
-Available Options:
-  warn: Output a warning but do not fail the action
-  error: Fail the action with an error message
-  ignore: Do not output any warnings or errors, the action does not fail
+# GSI Builder
+### Requirements:
+- Use ROM.zip
+- ROM must have treble support
+- Don't try OneUI
+- Download link must be direct
 
-    if-no-files-found: # optional, default is warn
-    # Duration after which artifact will expire in days. 0 means using default retention.
-Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
+### Tutorials:
+1. Fork this repo
+2. Go to workflows folder and edit builder.yml
+3. Add your ROM's direct link
+4. Star the repo and wait at the Actions tab
+5. Download link will be available at the Uploading part
 
-    retention-days: # optional
-    # The level of compression for Zlib to be applied to the artifact archive. The value can range from 0 to 9: - 0: No compression - 1: Best speed - 6: Default compression (same as GNU Gzip) - 9: Best compression Higher levels will result in better compression, but will take longer to complete. For large files that are not easily compressed, a value of 0 is recommended for significantly faster uploads.
+- Note: To rebuild a new GSI, change the link and just unstar/star again
 
-    compression-level: # optional, default is 6
-    # If true, an artifact with a matching name will be deleted before a new one is uploaded. If false, the action will fail if an artifact for the given name already exists. Does not fail if the artifact does not exist.
+### A bit of explaination
+- ROM_LINK: your ROM's direct link
+- ROM_TYPE: your specified ROM type, which follows:
+```
+1. Android 9: ColorOS, CubotOS, Flyme, Funtouch, JoyUI, MIUI, Moto, Nubia, OneUI, OxygenOS, Pixel, RazerUI, RogUI, VOS, Xperia, ZUI, ZenUI
+2. Android 10: ColorOS, Flyme, JoyUI, LGUX, MIUI, Moto, OriginOS, OxygenOS, Pixel, RogUI, VOS, ZUI, ZenUI
+3. Android 11: Pixel, VOS
+4. Android 12 S: Pixel
+```
+- If ROM is not specified in the list above then leave it Generic, DO NOT ENTER SOME BULLSHITS LIKE "Generic DotOS 5.1", LEAVE IT "Generic"! </br>
 
-    overwrite: # optional, default is false
-    # If true, hidden files will be included in the artifact. If false, hidden files will be excluded from the artifact.
+- BUILD_AB: set to true to build AB GSI
+- BUILD_AONLY: set to true to build A only GSI
+- ROM_AB: file's name, set to whatever you want but keep the .7z
+- ROM_AONLY:file's name, set to whatever you want but keep the .7z
 
-    include-hidden-files: # optional, default is false
+## Example env codes:
+1. Build AB GSI
+```
+ROM_LINK: https://rr.noordstar.me/69b5c654   #direct link
+ROM_TYPE: VOS   #ima pretend that this is a VOS rom
+BUILD_AB: true
+BUILD_AONLY: false   #not building A only
+ROM_AB: RickRollOS_AOSP_AB_BLABLABLA.7z
+ROM_AONLY: A.7z
+```
+2. Build A only GSI
+```
+ROM_LINK: https://rr.noordstar.me/69b5c654   #direct link
+ROM_TYPE: Pixel   #ima pretend that this is a Pixel rom
+BUILD_AB: false   #not building AB
+BUILD_AONLY: true
+ROM_AB: AB.7z
+ROM_AONLY: RickRollOS_AOSP_Aonly_BLABLABLA.7z
+```
+3. Build both AB and A only GSI
+```
+ROM_LINK: https://rr.noordstar.me/69b5c654   #direct link
+ROM_TYPE: Generic   #ima pretend that this is a Nusantara or other AOSP rom
+BUILD_AB: true   #building both
+BUILD_AONLY: true   #building both
+ROM_AB: RickRollOS_AOSP_AB_BLABLABLA.7z
+ROM_AONLY: RickRollOS_AOSP_Aonly_BLABLABLA.7z
+```
 
-    ROM_LINK: https://sourceforge.net/projects/mystic-gsi-updates/files/Pixel/Pixel-cheetah-15-12620009-AB-20241112-MysticGSI.zip/download   #direct link
-ROM_TYPE:Pixel/Pixel-cheetah-15-12620009-AB-20241112-MysticGSI.zip           
+# Support:
+- Telegram Group: t.me/ping2109market
+- Telegram Channel: t.me/ping2109rom
