@@ -25,4 +25,6 @@ Minimum 1 day. Maximum 90 days unless changed from the repository settings page.
     # If true, hidden files will be included in the artifact. If false, hidden files will be excluded from the artifact.
 
     include-hidden-files: # optional, default is false
-          
+
+    ROM_LINK: https://sourceforge.net/projects/mystic-gsi-updates/files/Pixel/Pixel-cheetah-15-12620009-AB-20241112-MysticGSI.zip/download   #direct link
+ROM_TYPE:Pixel/Pixel-cheetah-15-12620009-AB-20241112-MysticGSI.zip           
